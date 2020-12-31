@@ -1,15 +1,28 @@
 package data;
 
+import exceptions.*;
+
 /***
- * The personal identifying code in the National Health Service.
+ * The personal identifying code of a product.
  */
 
 final public class ProductID {
 
     private final String productID;
 
-    public ProductID(String code) {
+    public ProductID(String code) throws NullArgumentException, WrongFormatException {
+        if (code == null){
+            throw new NullArgumentException();
+        }
+        if (!hasCorrectFormat(code)){
+            throw new WrongFormatException();
+        }
         this.productID = code;
+    }
+
+    public static boolean hasCorrectFormat(String code){
+        //Número de 14 dígits
+        return code.matches("[0-9]{14}");
     }
 
     public String getProductID() {

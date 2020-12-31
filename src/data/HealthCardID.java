@@ -1,5 +1,7 @@
 package data;
 
+import exceptions.*;
+
 /***
  * The personal identifying code in the National Health Service.
  */
@@ -8,8 +10,18 @@ final public class HealthCardID {
 
     private final String personalID;
 
-    public HealthCardID(String code) {
+    public HealthCardID(String code) throws NullArgumentException, WrongFormatException {
+        if (code == null){
+            throw new NullArgumentException();
+        }
+        if (!hasCorrectFormat(code)){
+            throw new WrongFormatException();
+        }
         this.personalID = code;
+    }
+
+    public static boolean hasCorrectFormat(String code){
+        return code.matches("B{8}[A-Z][A-Z][0-9]{6}[0-9]{12}");
     }
 
     public String getPersonalID() {

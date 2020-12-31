@@ -1,5 +1,7 @@
 package data;
 
+import exceptions.NullArgumentException;
+
 import java.util.Arrays;
 
 /***
@@ -10,7 +12,10 @@ final public class DigitalSignature {
 
     private final byte[] signature;
 
-    public DigitalSignature(byte[] signature) {
+    public DigitalSignature(byte[] signature) throws NullArgumentException {
+        if (signature == null){
+            throw new NullArgumentException();
+        }
         this.signature = signature;
     }
 
