@@ -5,7 +5,6 @@ import data.*;
 import java.util.Queue;
 
 public class ScheduledVisitAgenda {
-
     private final Queue<Visit> visits;
 
     public ScheduledVisitAgenda(Queue<Visit> visits) {

@@ -2,6 +2,7 @@ package services;
 
 import data.*;
 import exceptions.*;
+import medicalconsultation.*;
 
 import java.net.ConnectException;
 import java.util.List;
