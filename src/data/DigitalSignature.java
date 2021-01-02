@@ -1,6 +1,6 @@
 package data;
 
-import exceptions.NullArgumentException;
+import exceptions.*;
 
 import java.util.Arrays;
 
