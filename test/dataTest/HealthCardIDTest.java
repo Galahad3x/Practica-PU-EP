@@ -19,7 +19,7 @@ public class HealthCardIDTest {
 
     @Test
     void WrongFormatTest() throws Exception{
-        String personalIDTest = "12345678923473";
+        String personalIDTest = "BBAR1234567891";
         try {
             HealthCardID hct = new HealthCardID(personalIDTest);
             fail();
@@ -30,7 +30,7 @@ public class HealthCardIDTest {
 
     @Test
     void CorrectFormatTest() throws Exception{
-        String personalIDTest = "12345678923473";
+        String personalIDTest = "BBBBBBBBAR123456789123456789";
         try {
             HealthCardID hct = new HealthCardID(personalIDTest);
         } catch (WrongFormatException e) {
