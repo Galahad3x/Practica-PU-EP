@@ -21,11 +21,11 @@ public class ProductIDTest {
 
     @Test
     void WrongFormatTest() throws Exception {
-        String code = "12345678923473";
+        String code = "1ADH282";
         try{
             ProductID prod = new ProductID(code);
             fail();
-        }catch (NullArgumentException e){
+        }catch (WrongFormatException e){
 
         }
     }
@@ -35,7 +35,7 @@ public class ProductIDTest {
         String code = "12345678923473";
         try{
             ProductID prod = new ProductID(code);
-        }catch (NullArgumentException e){
+        }catch (WrongFormatException e){
             fail();
         }
     }
