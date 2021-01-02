@@ -8,7 +8,7 @@ import exceptions.*;
 
 final public class HealthCardID {
 
-    private final String personalID;
+    public final String personalID;
 
     public HealthCardID(String code) throws NullArgumentException, WrongFormatException {
         if (code == null){
