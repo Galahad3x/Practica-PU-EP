@@ -2,11 +2,14 @@ import data.DigitalSignature;
 import data.HealthCardID;
 import exceptions.*;
 import medicalconsultation.MedicalPrescription;
+import medicalconsultation.ProductSpecification;
 import services.HealthNationalService;
 import services.ScheduledVisitAgenda;
 
 import java.net.ConnectException;
+import java.time.Instant;
 import java.util.Date;
+import java.util.List;
 
 public class ConsultationTerminal {
 
@@ -17,23 +20,42 @@ public class ConsultationTerminal {
 
     private MedicalPrescription mp;
 
-    public void initRevision() throws NullArgumentException, HealthCardException, ConnectException, NotValidePrescriptionException {
+    private List<ProductSpecification> searchResults;
+
+    public void initRevision() throws HealthCardException, ConnectException, NotValidePrescriptionException, NullArgumentException {
         //Obtenir el CIP del pacient per mitjà de l'AVC per descarregar la eRecepta
         HealthCardID patientID = agenda.getHealthCardID();
 
         //Descarregar la eRecepta per mitjà dl HNS
         setMedicalPrescription(hns.getePrescription(patientID));
 
+        if(mp == null){
+            throw new NotValidePrescriptionException();
+        }
+
         //Mostrar eRecepta en pantalla
         mp.print();
     }
 
     public void initPrescriptionEdition() throws AnyCurrentPrescriptionException, NotFinishedTreatmentException {
+        if(mp == null){
+            throw new AnyCurrentPrescriptionException();
+        }
+
+        Date currentEndingDate = mp.getEndDate();
+        Date currentDate = Date.from(Instant.ofEpochSecond(System.currentTimeMillis()));
+
+        if(currentDate.before(currentEndingDate)){
+            throw new NotFinishedTreatmentException();
+        }
 
     }
 
-    public void searchForProducts(String keyword) throws AnyMedicineSearchException, ConnectException {
-
+    public void searchForProducts(String keyword) throws AnyMedicineSearchException, ConnectException, AnyKeyWordMedicineException {
+        searchResults = hns.getProductsByKW(keyword);
+        if (searchResults.size() == 0){
+            throw new AnyMedicineSearchException();
+        }
     }
 
     public void selectProduct(int option) throws AnyMedicineSearchException, ConnectException {
@@ -60,7 +82,25 @@ public class ConsultationTerminal {
         //Nothing
     }
 
-    public void setMedicalPrescription(MedicalPrescription mp){
+    public void setHNS(HealthNationalService hns){
+        this.hns = hns;
+    }
+
+    public void setAgenda(ScheduledVisitAgenda sva){
+        this.agenda = sva;
+    }
+
+    public void setMedicalPrescription(MedicalPrescription mp) throws NullArgumentException {
+        if(mp == null){
+            throw new NullArgumentException();
+        }
         this.mp = mp;
+    }
+
+    public void seteSignature(DigitalSignature ds) throws NullArgumentException {
+        if(ds == null){
+            throw new NullArgumentException();
+        }
+        this.eSignature = ds;
     }
 }
