@@ -20,6 +20,13 @@ public class MedicalPrescription {
     private DigitalSignature eSign;  // the eSignature of the doctor
     private List<MedicalPrescriptionLine> lines;
 
+    private dayMoment dM;
+    private float duration;
+    private String instructions;
+    private float dose;
+    private float freq;
+    private FqUnit fqUnit;
+
     public MedicalPrescription(int prescCode, Date prescDate, Date endDate, HealthCardID hcID,
                                DigitalSignature eSign, List<MedicalPrescriptionLine> lines) {
         this.prescCode = prescCode;
@@ -77,42 +84,44 @@ public class MedicalPrescription {
         }
 
         try {
-            dayMoment dM = dayMoment.valueOf(instruc[0]);
+            dM = dayMoment.valueOf(instruc[0]);
         } catch (IllegalArgumentException e) {
             throw new IncorrectTakingGuidelinesException();
         }
 
         try {
-            float duration = Float.parseFloat(instruc[1]);
+            duration = Float.parseFloat(instruc[1]);
         } catch (NumberFormatException e) {
             throw new IncorrectTakingGuidelinesException();
         }
+
         /*
         try {
-            String instructions = instruc[2];
+            instructions = instruc[2];
         } catch (NullArgumentException e) {
             throw new NullArgumentException();
         }
         */
+
         try {
-            float dose = Float.parseFloat(instruc[3]);
+            dose = Float.parseFloat(instruc[3]);
         } catch (NumberFormatException e) {
             throw new IncorrectTakingGuidelinesException();
         }
 
         try {
-            float freq = Float.parseFloat(instruc[4]);
+            freq = Float.parseFloat(instruc[4]);
         } catch (NumberFormatException e) {
             throw new IncorrectTakingGuidelinesException();
         }
 
         try {
-            FqUnit fqUnit = FqUnit.valueOf(instruc[5]);
+            fqUnit = FqUnit.valueOf(instruc[5]);
         } catch (IllegalArgumentException e) {
             throw new IncorrectTakingGuidelinesException();
         }
 
-        // TakingGuideline tg = new TakingGuideline(dM, duration, instructions, dose, freq, fqUnit);
+        TakingGuideline tg = new TakingGuideline(dM, duration, instructions, dose, freq, fqUnit);
 
     }
 
