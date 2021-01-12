@@ -17,4 +17,28 @@ public class Posology {
         this.freq = f;
         this.freqUnit = u;
     }
+
+    public float getDose() {
+        return dose;
+    }
+
+    public void setDose(){
+        this.dose = dose;
+    }
+
+    public float getFreq(){
+        return freq;
+    }
+
+    public void setFreq(){
+        this.freq = freq;
+    }
+
+    public FqUnit getFreqUnit(){
+        return freqUnit;
+    }
+
+    public void setFreqUnit(){
+        this.freqUnit = freqUnit;
+    }
 }

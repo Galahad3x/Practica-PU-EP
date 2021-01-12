@@ -29,7 +29,7 @@ public class MedicalPrescription {
     }
 
     public void addLine(ProductID prodID, String[] instruc) throws IncorrectTakingGuidelinesException {
-
+        
     }
 
     public void modifyLine(ProductID prodID, String[] instruc) throws IncorrectTakingGuidelinesException, ProductNotInPrescriptionException {
