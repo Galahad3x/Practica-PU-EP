@@ -22,7 +22,7 @@ public class Posology {
         return dose;
     }
 
-    public void setDose(){
+    public void setDose(float dose){
         this.dose = dose;
     }
 
@@ -30,7 +30,7 @@ public class Posology {
         return freq;
     }
 
-    public void setFreq(){
+    public void setFreq(float freq){
         this.freq = freq;
     }
 
@@ -38,7 +38,7 @@ public class Posology {
         return freqUnit;
     }
 
-    public void setFreqUnit(){
+    public void setFreqUnit(FqUnit freqUnit){
         this.freqUnit = freqUnit;
     }
 }

@@ -25,7 +25,7 @@ public class TakingGuideline {
         return dMoment;
     }
 
-    public void setdMoment(){
+    public void setdMoment(dayMoment dMoment){
         this.dMoment = dMoment;
     }
 
@@ -33,7 +33,7 @@ public class TakingGuideline {
         return duration;
     }
 
-    public void setDuration(){
+    public void setDuration(float duration){
         this.duration = duration;
     }
 
@@ -41,7 +41,7 @@ public class TakingGuideline {
         return instructions;
     }
 
-    public void setInstructions(){
+    public void setInstructions(String instructions){
         this.instructions = instructions;
     }
 
@@ -49,7 +49,7 @@ public class TakingGuideline {
         return posology;
     }
 
-    public void setPosology(){
+    public void setPosology(Posology posology){
         this.posology = posology;
     }
 }
