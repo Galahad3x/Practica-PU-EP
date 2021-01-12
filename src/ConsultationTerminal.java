@@ -21,6 +21,7 @@ public class ConsultationTerminal {
     private MedicalPrescription mp;
 
     private List<ProductSpecification> searchResults;
+    private ProductSpecification selectedProduct;
 
     public void initRevision() throws HealthCardException, ConnectException, NotValidePrescriptionException, NullArgumentException {
         //Obtenir el CIP del pacient per mitjà de l'AVC per descarregar la eRecepta
@@ -51,15 +52,15 @@ public class ConsultationTerminal {
 
     }
 
-    public void searchForProducts(String keyword) throws AnyMedicineSearchException, ConnectException, AnyKeyWordMedicineException {
+    public void searchForProducts(String keyword) throws ConnectException, AnyKeyWordMedicineException {
         searchResults = hns.getProductsByKW(keyword);
-        if (searchResults.size() == 0){
-            throw new AnyMedicineSearchException();
-        }
     }
 
     public void selectProduct(int option) throws AnyMedicineSearchException, ConnectException {
-
+        if(searchResults == null || searchResults.size() == 0 || option > searchResults.size()){
+            throw new AnyMedicineSearchException();
+        }
+        selectedProduct = searchResults.get(option);
     }
 
     public void enterMedicineGuidelines(String[] instruc) throws IncorrectTakingGuidelinesException, NullArgumentException, AnySelectedMedicineException {
