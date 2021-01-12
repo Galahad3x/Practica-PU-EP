@@ -20,4 +20,36 @@ public class TakingGuideline {
         this.duration = du;
         this.instructions = i;
     }
+
+    public dayMoment getdMoment(){
+        return dMoment;
+    }
+
+    public void setdMoment(){
+        this.dMoment = dMoment;
+    }
+
+    public float getDuration(){
+        return duration;
+    }
+
+    public void setDuration(){
+        this.duration = duration;
+    }
+
+    public String getInstructions(){
+        return instructions;
+    }
+
+    public void setInstructions(){
+        this.instructions = instructions;
+    }
+
+    public Posology getPosology(){
+        return posology;
+    }
+
+    public void setPosology(){
+        this.posology = posology;
+    }
 }
