@@ -7,6 +7,7 @@ import exceptions.IncorrectTakingGuidelinesException;
 import exceptions.NullArgumentException;
 import exceptions.ProductNotInPrescriptionException;
 
+import java.security.InvalidParameterException;
 import java.util.Date;
 import java.util.List;
 
@@ -71,14 +72,48 @@ public class MedicalPrescription {
     }
 
     public void addLine(ProductID prodID, String[] instruc) throws IncorrectTakingGuidelinesException, NullArgumentException {
-        if (instruc == null) {
+        if (instruc == null || prodID == null) {
             throw new NullArgumentException();
         }
-        for (int i = 0; i < instruc.length; i++) {
-            if (!instruc[i].equals(hcID.getPersonalID())) {
-                throw new IncorrectTakingGuidelinesException();
-            }
+
+        try {
+            dayMoment dM = dayMoment.valueOf(instruc[0]);
+        } catch (IllegalArgumentException e) {
+            throw new IncorrectTakingGuidelinesException();
         }
+
+        try {
+            float duration = Float.parseFloat(instruc[1]);
+        } catch (NumberFormatException e) {
+            throw new IncorrectTakingGuidelinesException();
+        }
+        /*
+        try {
+            String instructions = instruc[2];
+        } catch (NullArgumentException e) {
+            throw new NullArgumentException();
+        }
+        */
+        try {
+            float dose = Float.parseFloat(instruc[3]);
+        } catch (NumberFormatException e) {
+            throw new IncorrectTakingGuidelinesException();
+        }
+
+        try {
+            float freq = Float.parseFloat(instruc[4]);
+        } catch (NumberFormatException e) {
+            throw new IncorrectTakingGuidelinesException();
+        }
+
+        try {
+            FqUnit fqUnit = FqUnit.valueOf(instruc[5]);
+        } catch (IllegalArgumentException e) {
+            throw new IncorrectTakingGuidelinesException();
+        }
+
+        // TakingGuideline tg = new TakingGuideline(dM, duration, instructions, dose, freq, fqUnit);
+
     }
 
     public void modifyLine(ProductID prodID, String[] instruc) throws IncorrectTakingGuidelinesException, ProductNotInPrescriptionException {
