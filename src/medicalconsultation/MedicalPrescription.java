@@ -20,13 +20,6 @@ public class MedicalPrescription {
     private DigitalSignature eSign;  // the eSignature of the doctor
     private List<MedicalPrescriptionLine> lines;
 
-    private dayMoment dM;
-    private float duration;
-    private String instructions;
-    private float dose;
-    private float freq;
-    private FqUnit fqUnit;
-
     public MedicalPrescription(int prescCode, Date prescDate, Date endDate, HealthCardID hcID,
                                DigitalSignature eSign, List<MedicalPrescriptionLine> lines) {
         this.prescCode = prescCode;
@@ -84,13 +77,13 @@ public class MedicalPrescription {
         }
 
         try {
-            dM = dayMoment.valueOf(instruc[0]);
+            dayMoment dM = dayMoment.valueOf(instruc[0]);
         } catch (IllegalArgumentException e) {
             throw new IncorrectTakingGuidelinesException();
         }
 
         try {
-            duration = Float.parseFloat(instruc[1]);
+            float duration = Float.parseFloat(instruc[1]);
         } catch (NumberFormatException e) {
             throw new IncorrectTakingGuidelinesException();
         }
@@ -104,24 +97,24 @@ public class MedicalPrescription {
         */
 
         try {
-            dose = Float.parseFloat(instruc[3]);
+            float dose = Float.parseFloat(instruc[3]);
         } catch (NumberFormatException e) {
             throw new IncorrectTakingGuidelinesException();
         }
 
         try {
-            freq = Float.parseFloat(instruc[4]);
+            float freq = Float.parseFloat(instruc[4]);
         } catch (NumberFormatException e) {
             throw new IncorrectTakingGuidelinesException();
         }
 
         try {
-            fqUnit = FqUnit.valueOf(instruc[5]);
+            FqUnit fqUnit = FqUnit.valueOf(instruc[5]);
         } catch (IllegalArgumentException e) {
             throw new IncorrectTakingGuidelinesException();
         }
 
-        TakingGuideline tg = new TakingGuideline(dM, duration, instructions, dose, freq, fqUnit);
+        TakingGuideline tg = new TakingGuideline(dayMoment.valueOf(instruc[0]), Float.parseFloat(instruc[1]), instruc[2], Float.parseFloat(instruc[3]), Float.parseFloat(instruc[4]), FqUnit.valueOf(instruc[5]));
 
     }
 
