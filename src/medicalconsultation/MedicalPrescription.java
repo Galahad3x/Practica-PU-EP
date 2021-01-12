@@ -89,4 +89,19 @@ public class MedicalPrescription {
 
     }
 
+    public void print(){
+        System.out.println(this.toString());
+    }
+
+    @Override
+    public String toString() {
+        return "MedicalPrescription{" +
+                "prescCode=" + prescCode +
+                ", prescDate=" + prescDate +
+                ", endDate=" + endDate +
+                ", hcID=" + hcID +
+                ", eSign=" + eSign +
+                ", lines=" + lines +
+                '}';
+    }
 }
