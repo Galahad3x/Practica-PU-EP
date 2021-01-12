@@ -88,13 +88,9 @@ public class MedicalPrescription {
             throw new IncorrectTakingGuidelinesException();
         }
 
-        /*
-        try {
-            instructions = instruc[2];
-        } catch (NullArgumentException e) {
-            throw new NullArgumentException();
+        if(instruc[2] == null){
+            throw new IncorrectTakingGuidelinesException();
         }
-        */
 
         try {
             float dose = Float.parseFloat(instruc[3]);
