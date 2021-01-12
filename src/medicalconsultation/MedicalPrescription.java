@@ -1,12 +1,16 @@
 package medicalconsultation;
 
+import data.DigitalSignature;
+import data.HealthCardID;
+import data.ProductID;
+import exceptions.IncorrectTakingGuidelinesException;
+import exceptions.ProductNotInPrescriptionException;
+
 import java.util.Date;
 import java.util.List;
 
-import data.*;
-import exceptions.*;
-
 public class MedicalPrescription {
+
     private int prescCode;
     private Date prescDate;
     private Date endDate;
