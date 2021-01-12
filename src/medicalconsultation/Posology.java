@@ -18,6 +18,7 @@ public class Posology {
         this.freqUnit = u;
     }
 
+    // Getters and Setters
     public float getDose() {
         return dose;
     }

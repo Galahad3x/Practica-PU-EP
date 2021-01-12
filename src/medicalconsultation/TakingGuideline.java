@@ -21,6 +21,7 @@ public class TakingGuideline {
         this.instructions = i;
     }
 
+    // Getters and Setters
     public dayMoment getdMoment(){
         return dMoment;
     }
