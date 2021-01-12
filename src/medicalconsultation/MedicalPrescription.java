@@ -77,13 +77,13 @@ public class MedicalPrescription {
         }
 
         try {
-            dayMoment dM = dayMoment.valueOf(instruc[0]);
+            dayMoment.valueOf(instruc[0]);
         } catch (IllegalArgumentException e) {
             throw new IncorrectTakingGuidelinesException();
         }
 
         try {
-            float duration = Float.parseFloat(instruc[1]);
+            Float.parseFloat(instruc[1]);
         } catch (NumberFormatException e) {
             throw new IncorrectTakingGuidelinesException();
         }
@@ -93,19 +93,19 @@ public class MedicalPrescription {
         }
 
         try {
-            float dose = Float.parseFloat(instruc[3]);
+            Float.parseFloat(instruc[3]);
         } catch (NumberFormatException e) {
             throw new IncorrectTakingGuidelinesException();
         }
 
         try {
-            float freq = Float.parseFloat(instruc[4]);
+            Float.parseFloat(instruc[4]);
         } catch (NumberFormatException e) {
             throw new IncorrectTakingGuidelinesException();
         }
 
         try {
-            FqUnit fqUnit = FqUnit.valueOf(instruc[5]);
+            FqUnit.valueOf(instruc[5]);
         } catch (IllegalArgumentException e) {
             throw new IncorrectTakingGuidelinesException();
         }
