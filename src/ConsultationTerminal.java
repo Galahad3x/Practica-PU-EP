@@ -70,19 +70,19 @@ public class ConsultationTerminal {
         if (instruc == null){
             throw new NullArgumentException();
         }
-
+        mp.addLine(selectedProduct.getProdID(),instruc);
     }
 
     public void enterTreatmentEndingDate(Date date) throws IncorrectEndingDateException {
-
+        Date currentDate = Date.from(Instant.ofEpochSecond(System.currentTimeMillis()));
+        if(date.before(currentDate)){
+            throw new IncorrectEndingDateException();
+        }
+        mp.setEndDate(date);
     }
 
-    public void sendePrescription() throws ConnectException, NotValidePrescriptionException, eSignatureException {
-
-    }
-
-    public void getePrescription(){
-
+    public void sendePrescription() throws ConnectException, NotValidePrescriptionException, eSignatureException, NotCompletedMedicalPrescriptionException {
+        hns.sendePrescription(mp);
     }
 
     public void printePresc() throws PrintingException {
