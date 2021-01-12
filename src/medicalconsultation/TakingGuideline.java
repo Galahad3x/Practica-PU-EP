@@ -3,6 +3,7 @@ package medicalconsultation;
 import exceptions.*;
 
 public class TakingGuideline {
+
     private dayMoment dMoment;
 
     private float duration;

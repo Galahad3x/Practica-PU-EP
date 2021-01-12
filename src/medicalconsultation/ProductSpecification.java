@@ -12,7 +12,7 @@ public class ProductSpecification {
     private BigDecimal price;
 
     public ProductSpecification(ProductID prodID, String description, BigDecimal price) throws NullArgumentException {
-        if(prodID == null || description == null || price == null){
+        if (prodID == null || description == null || price == null) {
             throw new NullArgumentException();
         }
         this.prodID = prodID;
