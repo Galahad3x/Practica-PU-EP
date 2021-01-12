@@ -64,6 +64,12 @@ public class ConsultationTerminal {
     }
 
     public void enterMedicineGuidelines(String[] instruc) throws IncorrectTakingGuidelinesException, NullArgumentException, AnySelectedMedicineException {
+        if (selectedProduct == null) {
+            throw new AnySelectedMedicineException();
+        }
+        if (instruc == null){
+            throw new NullArgumentException();
+        }
 
     }
 
