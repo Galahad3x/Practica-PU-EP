@@ -11,6 +11,7 @@ import services.HealthNationalService;
 import java.math.BigDecimal;
 import java.net.ConnectException;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -31,7 +32,7 @@ public class HNSDoble implements HealthNationalService {
         } catch (NullArgumentException | WrongFormatException e) {
             e.printStackTrace();
         }
-        prescriptions.add(new MedicalPrescription(prescCode, prescDate, endDate, hcID, sign, new LinkedList<>()));
+        prescriptions.add(new MedicalPrescription(prescCode, prescDate, endDate, hcID, sign, new HashMap<>()));
         prescCode = 2;
         prescDate = new Date();
         endDate = new Date();
@@ -43,7 +44,7 @@ public class HNSDoble implements HealthNationalService {
         } catch (NullArgumentException | WrongFormatException e) {
             e.printStackTrace();
         }
-        prescriptions.add(new MedicalPrescription(prescCode, prescDate, endDate, hcID, sign, new LinkedList<>()));
+        prescriptions.add(new MedicalPrescription(prescCode, prescDate, endDate, hcID, sign, new HashMap<>()));
 
         try {
             products.add(new ProductSpecification(new ProductID("12345678901234"), "medicament mal de cap", BigDecimal.valueOf(3.99)));
