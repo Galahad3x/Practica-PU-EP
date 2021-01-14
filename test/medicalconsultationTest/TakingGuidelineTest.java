@@ -4,7 +4,6 @@ import exceptions.NullArgumentException;
 import medicalconsultation.FqUnit;
 import medicalconsultation.TakingGuideline;
 import medicalconsultation.dayMoment;
-import medicalconsultation.Posology;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.fail;
