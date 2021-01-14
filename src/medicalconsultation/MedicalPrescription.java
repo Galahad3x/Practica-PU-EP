@@ -7,7 +7,6 @@ import exceptions.IncorrectTakingGuidelinesException;
 import exceptions.NullArgumentException;
 import exceptions.ProductNotInPrescriptionException;
 
-import java.security.InvalidParameterException;
 import java.util.Date;
 import java.util.List;
 
@@ -71,6 +70,14 @@ public class MedicalPrescription {
         this.lines = lines;
     }
 
+    public HealthCardID getHcID() {
+        return hcID;
+    }
+
+    public void setHcID(HealthCardID hcID) {
+        this.hcID = hcID;
+    }
+
     public void addLine(ProductID prodID, String[] instruc) throws IncorrectTakingGuidelinesException, NullArgumentException {
         if (instruc == null || prodID == null) {
             throw new NullArgumentException();
@@ -88,7 +95,7 @@ public class MedicalPrescription {
             throw new IncorrectTakingGuidelinesException();
         }
 
-        if(instruc[2] == null) {
+        if (instruc[2] == null) {
             throw new IncorrectTakingGuidelinesException();
         }
 
@@ -119,11 +126,11 @@ public class MedicalPrescription {
 
     }
 
-    public void removeLine(ProductID prodID) throws ProductNotInPrescriptionException{
+    public void removeLine(ProductID prodID) throws ProductNotInPrescriptionException {
 
     }
 
-    public void print(){
+    public void print() {
         System.out.println(this.toString());
     }
 
