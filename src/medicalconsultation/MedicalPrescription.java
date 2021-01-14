@@ -88,7 +88,7 @@ public class MedicalPrescription {
             throw new IncorrectTakingGuidelinesException();
         }
 
-        if(instruc[2] == null){
+        if(instruc[2] == null) {
             throw new IncorrectTakingGuidelinesException();
         }
 
@@ -110,7 +110,8 @@ public class MedicalPrescription {
             throw new IncorrectTakingGuidelinesException();
         }
 
-        TakingGuideline tg = new TakingGuideline(dayMoment.valueOf(instruc[0]), Float.parseFloat(instruc[1]), instruc[2], Float.parseFloat(instruc[3]), Float.parseFloat(instruc[4]), FqUnit.valueOf(instruc[5]));
+        TakingGuideline tg = new TakingGuideline(dayMoment.valueOf(instruc[0]), Float.parseFloat(instruc[1]), instruc[2],
+                                Float.parseFloat(instruc[3]), Float.parseFloat(instruc[4]), FqUnit.valueOf(instruc[5]));
 
     }
 
