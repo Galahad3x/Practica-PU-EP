@@ -74,7 +74,6 @@ public class MedicalPrescription {
         }
         //Mirem si String[] està incomplet
         checkStringLength(instruc);
-
         //Comprovem si hi són tots els elements a l'array d'instruccions
         checkNullElements(instruc);
         checkInstrucArguments(instruc);
@@ -87,9 +86,7 @@ public class MedicalPrescription {
         parseProdID(prodID);
         //Mirem si String[] està incomplet
         checkStringLength(instruc);
-
         checkInstrucArguments(instruc);
-
         MedicalPrescriptionLine mpl = new MedicalPrescriptionLine(dayMoment.valueOf(instruc[0]), Float.parseFloat(instruc[1]), instruc[2],
                 Float.parseFloat(instruc[3]), Float.parseFloat(instruc[4]), FqUnit.valueOf(instruc[5]));
         lines.replace(prodID, mpl);
