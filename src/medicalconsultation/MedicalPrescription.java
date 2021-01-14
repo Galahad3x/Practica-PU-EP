@@ -73,9 +73,8 @@ public class MedicalPrescription {
             throw new NullArgumentException();
         }
         //Mirem si String[] està incomplet
-        if (instruc.length != 6) {
-            throw new IncorrectTakingGuidelinesException();
-        }
+        checkStringLength(instruc);
+
         //Comprovem si hi són tots els elements a l'array d'instruccions
         checkNullElements(instruc);
         checkInstrucArguments(instruc);
@@ -87,9 +86,7 @@ public class MedicalPrescription {
     public void modifyLine(ProductID prodID, String[] instruc) throws IncorrectTakingGuidelinesException, ProductNotInPrescriptionException, NullArgumentException{
         parseProdID(prodID);
         //Mirem si String[] està incomplet
-        if (instruc.length != 6) {
-            throw new IncorrectTakingGuidelinesException();
-        }
+        checkStringLength(instruc);
 
         checkInstrucArguments(instruc);
 
@@ -115,12 +112,17 @@ public class MedicalPrescription {
         if (prodID == null) {
             throw new NullArgumentException();
         }
-        /*
-         * Comprovem que l'argument prodID estigui a lines per a poder-lo modificar o borrar
+        /* Comprovem que l'argument prodID estigui a lines per a poder-lo modificar o borrar
          * S'utilitzarà als mètodes "modifyLine" i "removeLine"
          */
         if (!lines.containsKey(prodID)) {
             throw new ProductNotInPrescriptionException();
+        }
+    }
+
+    public void checkStringLength(String[] instruc) throws IncorrectTakingGuidelinesException {
+        if (instruc.length != 6) {
+            throw new IncorrectTakingGuidelinesException();
         }
     }
 
@@ -154,7 +156,6 @@ public class MedicalPrescription {
             throw new IncorrectTakingGuidelinesException();
         }
     }
-
 
     public void print() {
         System.out.println(this.toString());
