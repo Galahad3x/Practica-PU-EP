@@ -14,38 +14,21 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashMap;
 
+import static org.junit.jupiter.api.Assertions.fail;
+
 public class ConsultationTerminalTest {
 
-    /* HealthCardIDs vàlides:
-        BBBBBBBBQF123456789012345678
-        BBBBBBBBQD123456789012345678
-
-        ProductIDs vàlides:
-        12345678901234
-        12345678901235
-        12345678901236
-        12345678901237
-        12345678901238
-        12345678901239
-
-        Keywords vàlides:
-        medicament
-        pastilles
-        crema
-        cap
-        panxa
-        estomac
-        dolor
-        pell
-     */
+    private static String[] valid_hcIDs = {"BBBBBBBBQF123456789012345678", "BBBBBBBBQD123456789012345678"};
+    private static String[] valid_prIDs = {"12345678901234","12345678901235","12345678901236","12345678901237","12345678901238","12345678901239"};
+    private static String[] valid_keywords = {"medicament","pastilles","crema","cap","panxa","estomac","dolor","pell"};
 
     private static HealthNationalServiceDB hnsDB = new HealthNationalServiceDB();
     private static ScheduledVisitAgendaDB agendaDB = new ScheduledVisitAgendaDB();
 
-    private ConsultationTerminal terminal = new ConsultationTerminal();
+    private static ConsultationTerminal terminal = new ConsultationTerminal();
 
     @BeforeAll
-    static void beforeAll() {
+    static void beforeEach() {
         int prescCode = 1;
         Date prescDate = new Date();
         Date endDate = new Date();
@@ -87,10 +70,25 @@ public class ConsultationTerminalTest {
         } catch (NullArgumentException e) {
             e.printStackTrace();
         }
+
+        for (String hcs : valid_hcIDs) {
+            try {
+                agendaDB.addVisit(hcs);
+            } catch (WrongFormatException | NullArgumentException e) {
+                e.printStackTrace();
+            }
+        }
+
+        terminal.setHNS(hnsDB);
+        terminal.setAgenda(agendaDB);
     }
 
     @Test
     void initRevisionWithCorrectPatient() {
-
+        try {
+            terminal.initRevision();
+        }catch (Exception e){
+            fail();
+        }
     }
 }
