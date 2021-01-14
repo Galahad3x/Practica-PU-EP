@@ -13,11 +13,14 @@ import java.net.ConnectException;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
 public class HNSDoble implements HealthNationalService {
 
     List<MedicalPrescription> prescriptions = new LinkedList<>();
     List<ProductSpecification> products = new LinkedList<>();
+    List<ProductSpecification> search_results = null;
+    DigitalSignature medic_signature = null;
 
     public HNSDoble() {
         int prescCode = 1;
@@ -46,13 +49,13 @@ public class HNSDoble implements HealthNationalService {
         prescriptions.add(new MedicalPrescription(prescCode, prescDate, endDate, hcID, sign, new LinkedList<>()));
 
         try {
-            products.add(new ProductSpecification(new ProductID("12345678901234"), "medicament mal de cap", BigDecimal.valueOf(3.99)));
+            products.add(new ProductSpecification(new ProductID("12345678901234"), "medicament cap", BigDecimal.valueOf(3.99)));
         } catch (NullArgumentException | WrongFormatException e) {
             e.printStackTrace();
         }
 
         try {
-            products.add(new ProductSpecification(new ProductID("12345678901235"), "medicament mal de panxa", BigDecimal.valueOf(6.25)));
+            products.add(new ProductSpecification(new ProductID("12345678901235"), "medicament panxa", BigDecimal.valueOf(6.25)));
         } catch (NullArgumentException | WrongFormatException e) {
             e.printStackTrace();
         }
@@ -78,6 +81,12 @@ public class HNSDoble implements HealthNationalService {
         try {
             products.add(new ProductSpecification(new ProductID("12345678901239"), "crema pell", BigDecimal.valueOf(17.6)));
         } catch (NullArgumentException | WrongFormatException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            this.medic_signature = new DigitalSignature(new byte[10]);
+        } catch (NullArgumentException e) {
             e.printStackTrace();
         }
     }
@@ -108,16 +117,30 @@ public class HNSDoble implements HealthNationalService {
         if(resultats.size() == 0){
             throw new AnyKeyWordMedicineException();
         }
+        search_results = resultats;
         return resultats;
     }
 
     @Override
     public ProductSpecification getProductSpecific(int opt) throws AnyMedicineSearchException, ConnectException {
-        return null;
+        if (this.search_results == null) {
+            throw new AnyMedicineSearchException();
+        }
+        try {
+            return this.search_results.get(opt);
+        } catch (IndexOutOfBoundsException e) {
+            throw new AnyMedicineSearchException();
+        }
     }
 
     @Override
     public MedicalPrescription sendePrescription(MedicalPrescription ePresc) throws ConnectException, NotValidePrescriptionException, eSignatureException, NotCompletedMedicalPrescriptionException {
-        return null;
+        Random rand = new Random();
+        int generated_code = rand.nextInt(1000);
+        ePresc.setPrescCode(generated_code);
+        if(this.medic_signature == null){
+            throw new eSignatureException();
+        }
+        ePresc.seteSign(this.medic_signature);
     }
 }
