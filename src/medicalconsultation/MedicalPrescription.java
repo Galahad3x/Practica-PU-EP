@@ -67,9 +67,9 @@ public class MedicalPrescription {
         this.hcID = hcID;
     }
 
-    public void addLine(ProductSpecification prodSpec, String[] instruc) throws IncorrectTakingGuidelinesException, NullArgumentException {
+    public void addLine(ProductID prodID, String[] instruc) throws IncorrectTakingGuidelinesException, NullArgumentException {
         //Parametres nulls
-        if (instruc == null || prodSpec == null) {
+        if (instruc == null || prodID == null) {
             throw new NullArgumentException();
         }
         //Mirem si String[] està incomplet
@@ -78,18 +78,18 @@ public class MedicalPrescription {
         checkNullElements(instruc);
         checkInstrucArguments(instruc);
         MedicalPrescriptionLine mpl = new MedicalPrescriptionLine(dayMoment.valueOf(instruc[0]), Float.parseFloat(instruc[1]), instruc[2],
-                                Float.parseFloat(instruc[3]), Float.parseFloat(instruc[4]), FqUnit.valueOf(instruc[5]), prodSpec);
-        lines.put(prodSpec.getProdID(), mpl);
+                                Float.parseFloat(instruc[3]), Float.parseFloat(instruc[4]), FqUnit.valueOf(instruc[5]), prodID);
+        lines.put(prodID, mpl);
     }
 
-    public void modifyLine(ProductSpecification prodSpec, String[] instruc) throws IncorrectTakingGuidelinesException, ProductNotInPrescriptionException, NullArgumentException{
-        parseProdID(prodSpec.getProdID());
+    public void modifyLine(ProductID prodID, String[] instruc) throws IncorrectTakingGuidelinesException, ProductNotInPrescriptionException, NullArgumentException{
+        parseProdID(prodID);
         //Mirem si String[] està incomplet
         checkStringLength(instruc);
         checkInstrucArguments(instruc);
         MedicalPrescriptionLine mpl = new MedicalPrescriptionLine(dayMoment.valueOf(instruc[0]), Float.parseFloat(instruc[1]), instruc[2],
-                Float.parseFloat(instruc[3]), Float.parseFloat(instruc[4]), FqUnit.valueOf(instruc[5]), prodSpec);
-        lines.replace(prodSpec.getProdID(), mpl);
+                Float.parseFloat(instruc[3]), Float.parseFloat(instruc[4]), FqUnit.valueOf(instruc[5]), prodID);
+        lines.replace(prodID, mpl);
     }
 
     public void removeLine(ProductID prodID) throws ProductNotInPrescriptionException, NullArgumentException {
