@@ -1,14 +1,15 @@
 package medicalconsultation;
 
+import data.ProductID;
 import exceptions.NullArgumentException;
 
 public class MedicalPrescriptionLine {
     private TakingGuideline guideline;
-    private ProductSpecification prSpec;
+    private ProductID prodID;
 
-    public MedicalPrescriptionLine(dayMoment dayMoment, float duration, String instructions, float dose, float freq, FqUnit fqUnit, ProductSpecification prSpec) throws NullArgumentException {
+    public MedicalPrescriptionLine(dayMoment dayMoment, float duration, String instructions, float dose, float freq, FqUnit fqUnit, ProductID prodID) throws NullArgumentException {
         this.guideline = new TakingGuideline(dayMoment, duration, instructions, dose, freq, fqUnit);
-        this.prSpec = prSpec;
+        this.prodID = prodID;
     }
 
     public void setGuideline(TakingGuideline guideline) {
@@ -19,11 +20,11 @@ public class MedicalPrescriptionLine {
         return guideline;
     }
 
-    public void setPrID(ProductSpecification prSpec) {
-        this.prSpec = prSpec;
+    public void setPrID(ProductID prodID) {
+        this.prodID = prodID;
     }
 
-    public ProductSpecification getPrID() {
-        return prSpec;
+    public ProductID getPrID() {
+        return prodID;
     }
 }
