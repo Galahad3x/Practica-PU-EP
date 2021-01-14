@@ -6,9 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class MedicalPrescriptionTest {
 
     @Test
-    void addLineTest() {
-
-    }
+    void NullArgumentTest()
 
     @Test
     void modifyLineTest() {
