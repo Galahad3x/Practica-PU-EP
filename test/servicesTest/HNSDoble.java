@@ -142,5 +142,12 @@ public class HNSDoble implements HealthNationalService {
             throw new eSignatureException();
         }
         ePresc.seteSign(this.medic_signature);
+        if(ePresc.getPrescDate().after(new Date()) || ePresc.getEndDate().before(new Date())){
+            throw new NotValidePrescriptionException();
+        }
+        if(ePresc.getLines().size() == 0){
+            throw new NotCompletedMedicalPrescriptionException();
+        }
+        return ePresc;
     }
 }
