@@ -1,6 +1,8 @@
 import org.junit.jupiter.api.Test;
 import services.HealthNationalService;
-import servicesTest.HNSDoble;
+import services.ScheduledVisitAgenda;
+import servicesTest.HealthNationalServiceDB;
+import servicesTest.ScheduledVisitAgendaDB;
 
 public class ConsultationTerminalTest {
 
@@ -27,7 +29,8 @@ public class ConsultationTerminalTest {
         pell
      */
 
-    HealthNationalService hnsDB = new HNSDoble();
+    HealthNationalService hnsDB = new HealthNationalServiceDB();
+    ScheduledVisitAgenda agendaDB = new ScheduledVisitAgendaDB();
 
     @Test
     void prova() {

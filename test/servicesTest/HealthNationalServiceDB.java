@@ -16,14 +16,14 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
-public class HNSDoble implements HealthNationalService {
+public class HealthNationalServiceDB implements HealthNationalService {
 
     List<MedicalPrescription> prescriptions = new LinkedList<>();
     List<ProductSpecification> products = new LinkedList<>();
     List<ProductSpecification> search_results = null;
     DigitalSignature medic_signature = null;
 
-    public HNSDoble() {
+    public HealthNationalServiceDB() {
         int prescCode = 1;
         Date prescDate = new Date();
         Date endDate = new Date();
