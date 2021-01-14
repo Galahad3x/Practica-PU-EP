@@ -2,94 +2,27 @@ package servicesTest;
 
 import data.DigitalSignature;
 import data.HealthCardID;
-import data.ProductID;
 import exceptions.*;
 import medicalconsultation.MedicalPrescription;
 import medicalconsultation.ProductSpecification;
 import services.HealthNationalService;
 
-import java.math.BigDecimal;
 import java.net.ConnectException;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
 public class HealthNationalServiceDB implements HealthNationalService {
 
-    List<MedicalPrescription> prescriptions = new LinkedList<>();
-    List<ProductSpecification> products = new LinkedList<>();
+    List<MedicalPrescription> prescriptions;
+    List<ProductSpecification> products;
     List<ProductSpecification> search_results = null;
     DigitalSignature medic_signature = null;
 
     public HealthNationalServiceDB() {
-        int prescCode = 1;
-        Date prescDate = new Date();
-        Date endDate = new Date();
-        HealthCardID hcID = null;
-        DigitalSignature sign = null;
-        try {
-            hcID = new HealthCardID("BBBBBBBBQF123456789012345678");
-            sign = new DigitalSignature(new byte[10]);
-        } catch (NullArgumentException | WrongFormatException e) {
-            e.printStackTrace();
-        }
-        prescriptions.add(new MedicalPrescription(prescCode, prescDate, endDate, hcID, sign, new HashMap<>()));
-        prescCode = 2;
-        prescDate = new Date();
-        endDate = new Date();
-        hcID = null;
-        sign = null;
-        try {
-            hcID = new HealthCardID("BBBBBBBBQD123456789012345678");
-            sign = new DigitalSignature(new byte[10]);
-        } catch (NullArgumentException | WrongFormatException e) {
-            e.printStackTrace();
-        }
-        prescriptions.add(new MedicalPrescription(prescCode, prescDate, endDate, hcID, sign, new HashMap<>()));
-
-        try {
-            products.add(new ProductSpecification(new ProductID("12345678901234"), "medicament cap", BigDecimal.valueOf(3.99)));
-        } catch (NullArgumentException | WrongFormatException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            products.add(new ProductSpecification(new ProductID("12345678901235"), "medicament panxa", BigDecimal.valueOf(6.25)));
-        } catch (NullArgumentException | WrongFormatException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            products.add(new ProductSpecification(new ProductID("12345678901236"), "pastilles estomac", BigDecimal.valueOf(4.20)));
-        } catch (NullArgumentException | WrongFormatException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            products.add(new ProductSpecification(new ProductID("12345678901237"), "pastilles dolor", BigDecimal.valueOf(5)));
-        } catch (NullArgumentException | WrongFormatException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            products.add(new ProductSpecification(new ProductID("12345678901238"), "pastilles panxa", BigDecimal.valueOf(9.20)));
-        } catch (NullArgumentException | WrongFormatException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            products.add(new ProductSpecification(new ProductID("12345678901239"), "crema pell", BigDecimal.valueOf(17.6)));
-        } catch (NullArgumentException | WrongFormatException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            this.medic_signature = new DigitalSignature(new byte[10]);
-        } catch (NullArgumentException e) {
-            e.printStackTrace();
-        }
+        prescriptions = new LinkedList<>();
+        products = new LinkedList<>();
     }
 
     @Override
@@ -150,5 +83,17 @@ public class HealthNationalServiceDB implements HealthNationalService {
             throw new NotCompletedMedicalPrescriptionException();
         }
         return ePresc;
+    }
+
+    public void add_prescription(MedicalPrescription pres){
+        prescriptions.add(pres);
+    }
+
+    public void add_product(ProductSpecification prod){
+        products.add(prod);
+    }
+
+    public void setMedic_signature(DigitalSignature medic_signature) {
+        this.medic_signature = medic_signature;
     }
 }
