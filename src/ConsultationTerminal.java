@@ -70,7 +70,7 @@ public class ConsultationTerminal {
         if (instruc == null){
             throw new NullArgumentException();
         }
-        mp.addLine(selectedProduct.getProdID(),instruc);
+        mp.addLine(selectedProduct,instruc);
     }
 
     public void enterTreatmentEndingDate(Date date) throws IncorrectEndingDateException {
