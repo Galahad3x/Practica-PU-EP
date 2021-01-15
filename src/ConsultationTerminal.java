@@ -78,6 +78,7 @@ public class ConsultationTerminal {
         if(date.before(currentDate)){
             throw new IncorrectEndingDateException();
         }
+        mp.setPrescDate(currentDate);
         mp.setEndDate(date);
     }
 
