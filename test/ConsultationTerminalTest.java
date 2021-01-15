@@ -27,7 +27,7 @@ public class ConsultationTerminalTest {
     private static ConsultationTerminal terminal = new ConsultationTerminal();
 
     @BeforeEach
-    void beforeEach() {
+    void beforeEach() throws NullArgumentException {
         terminal = new ConsultationTerminal();
         int prescCode = 1;
         Date prescDate = new Date();
@@ -68,12 +68,7 @@ public class ConsultationTerminalTest {
             fail();
         }
 
-        try {
-            hnsDB.setMedic_signature(new DigitalSignature(new byte[10]));
-        } catch (NullArgumentException e) {
-            e.printStackTrace();
-            fail();
-        }
+        terminal.seteSignature(new DigitalSignature(new byte[10]));
 
         for (String hcs : valid_hcIDs) {
             try {

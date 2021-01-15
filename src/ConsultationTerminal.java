@@ -85,6 +85,10 @@ public class ConsultationTerminal {
     }
 
     public void sendePrescription() throws ConnectException, NotValidePrescriptionException, eSignatureException, NotCompletedMedicalPrescriptionException {
+        if(this.eSignature == null){
+            throw new eSignatureException();
+        }
+        mp.seteSign(this.eSignature);
         hns.sendePrescription(mp);
     }
 

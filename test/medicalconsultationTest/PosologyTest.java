@@ -1,23 +1,19 @@
 package medicalconsultationTest;
 
 import exceptions.NullArgumentException;
-import medicalconsultation.FqUnit;
 import medicalconsultation.Posology;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.fail;
 
 class PosologyTest {
 
     @Test
-    void NullArgumentTest() throws NullArgumentException {
-        float dose = Float.parseFloat(null);
-        float freq = Float.parseFloat(null);
-        FqUnit fqUnit = null;
+    void NullArgumentTest() {
         try {
-            Posology pg = new Posology(dose, freq, fqUnit);
+            Posology pg = new Posology(0.5f, 0.1f, null);
             fail();
-        } catch (NullArgumentException e) {
+        } catch (NullArgumentException ignored) {
 
         }
     }

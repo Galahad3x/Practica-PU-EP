@@ -1,6 +1,5 @@
 package servicesTest;
 
-import data.DigitalSignature;
 import data.HealthCardID;
 import exceptions.*;
 import medicalconsultation.MedicalPrescription;
@@ -18,7 +17,6 @@ public class HealthNationalServiceDB implements HealthNationalService {
     List<MedicalPrescription> prescriptions;
     List<ProductSpecification> products;
     List<ProductSpecification> search_results = null;
-    DigitalSignature medic_signature = null;
 
     public HealthNationalServiceDB() {
         prescriptions = new LinkedList<>();
@@ -72,10 +70,6 @@ public class HealthNationalServiceDB implements HealthNationalService {
         Random rand = new Random();
         int generated_code = rand.nextInt(1000);
         ePresc.setPrescCode(generated_code);
-        if(this.medic_signature == null){
-            throw new eSignatureException();
-        }
-        ePresc.seteSign(this.medic_signature);
         if(ePresc.getPrescDate().after(new Date()) || ePresc.getEndDate().before(new Date())){
             throw new NotValidePrescriptionException();
         }
@@ -91,9 +85,5 @@ public class HealthNationalServiceDB implements HealthNationalService {
 
     public void add_product(ProductSpecification prod){
         products.add(prod);
-    }
-
-    public void setMedic_signature(DigitalSignature medic_signature) {
-        this.medic_signature = medic_signature;
     }
 }
