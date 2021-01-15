@@ -1,12 +1,74 @@
 package medicalconsultationTest;
 
+import data.DigitalSignature;
+import data.HealthCardID;
+import data.ProductID;
+import exceptions.IncorrectTakingGuidelinesException;
+import exceptions.NullArgumentException;
+import exceptions.WrongFormatException;
+import medicalconsultation.FqUnit;
+import medicalconsultation.MedicalPrescriptionLine;
+import medicalconsultation.dayMoment;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import medicalconsultation.MedicalPrescription;
+
+import java.util.Date;
+import java.util.HashMap;
 
 class MedicalPrescriptionTest {
 
+    private static final String[] valid_line = {"AFTERBREAKFAST", "2", "Tomar cada dia", "1", "4", "HOUR"};
+    private static final String[] imcomplete_line = {"AFTERBREAKFAST", null, "Tomar cada dia", null, "4", "HOUR"};
+
+    // Quan ens passen un prodID = null
     @Test
-    void NullArgumentTest()
+    void NullArgumentTest() throws NullArgumentException, WrongFormatException, IncorrectTakingGuidelinesException {
+        ProductID prodID = new ProductID("12345678923473");
+        MedicalPrescriptionLine mpl = new MedicalPrescriptionLine(dayMoment.AFTERBREAKFAST, 2,
+                "Tomar cada dia", 1, 4, FqUnit.HOUR, prodID);
+        MedicalPrescription medp = new MedicalPrescription(3, new Date(), new Date(),
+                new HealthCardID("BBBBBBBBAR123456789123456789"), new DigitalSignature(new byte[10]), new HashMap<>());
+        try {
+            medp.getLines().get(mpl.getPrID());
+            medp.addLine(null, valid_line);
+            fail();
+        } catch (NullArgumentException ignored) {
+
+        }
+    }
+
+    // Quan ens passen una linia de prescripció incompleta (
+    @Test
+    void incompleteStringTest() throws IncorrectTakingGuidelinesException, NullArgumentException, WrongFormatException {
+        ProductID prodID = new ProductID("12345678923473");
+        MedicalPrescriptionLine mpl = new MedicalPrescriptionLine(dayMoment.AFTERBREAKFAST, 2,
+                "Tomar cada dia", 1, 4, FqUnit.HOUR, prodID);
+        MedicalPrescription medp = new MedicalPrescription(3, new Date(), new Date(),
+                new HealthCardID("BBBBBBBBAR123456789123456789"), new DigitalSignature(new byte[10]), new HashMap<>());
+        try {
+            medp.getLines().get(mpl.getPrID());
+            medp.addLine(prodID, imcomplete_line);
+            fail();
+        } catch (NullArgumentException ignored) {
+
+        }
+    }
+
+    @Test
+    void nullArrayElementsTest() {
+
+    }
+
+    @Test
+    void correctFormatTest() {
+
+    }
+
+    @Test
+    void addLineTest() {
+
+    }
 
     @Test
     void modifyLineTest() {

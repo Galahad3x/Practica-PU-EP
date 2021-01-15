@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 class TakingGuidelineTest {
     @Test
-    void NullArgumentTest() throws NullArgumentException {
+    void NullArgumentTest() {
         dayMoment dm = null;
         float du = Float.parseFloat(null);
         String i = null;
