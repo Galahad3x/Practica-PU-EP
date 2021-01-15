@@ -7,9 +7,6 @@ import exceptions.IncorrectTakingGuidelinesException;
 import exceptions.NullArgumentException;
 import exceptions.ProductNotInPrescriptionException;
 import exceptions.WrongFormatException;
-import medicalconsultation.FqUnit;
-import medicalconsultation.MedicalPrescriptionLine;
-import medicalconsultation.dayMoment;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import medicalconsultation.MedicalPrescription;
@@ -24,12 +21,11 @@ class MedicalPrescriptionTest {
     private static final String[] incomplete_line = {"AFTERBREAKFAST", "2", "Tomar cada dia", "1", "4"};
     private static final String[] incorrectFormat_line = {"bondia", "hola", "Tomar cada dia", "1.2", "4", "quetal"};
 
+    // **************************** TESTS DEL MÈTODE ADDLINE ****************************
+
     // Quan ens passen un prodID = null
     @Test
     void addLine_NullArgumentTest() throws NullArgumentException, WrongFormatException, IncorrectTakingGuidelinesException {
-        ProductID prodID = new ProductID("12345678923473");
-        MedicalPrescriptionLine mpl = new MedicalPrescriptionLine(dayMoment.AFTERBREAKFAST, 2,
-                "Tomar cada dia", 1, 4, FqUnit.HOUR, prodID);
         MedicalPrescription medp = new MedicalPrescription(3, new Date(), new Date(),
                 new HealthCardID("BBBBBBBBAR123456789123456789"), new DigitalSignature(new byte[10]), new HashMap<>());
         try {
@@ -43,8 +39,6 @@ class MedicalPrescriptionTest {
     @Test
     void checkAddedLine() throws NullArgumentException, WrongFormatException {
         ProductID prodID = new ProductID("12345678923473");
-        MedicalPrescriptionLine mpl = new MedicalPrescriptionLine(dayMoment.AFTERBREAKFAST, 2,
-                "Tomar cada dia", 1, 4, FqUnit.HOUR, prodID);
         MedicalPrescription medp = new MedicalPrescription(3, new Date(), new Date(),
                 new HealthCardID("BBBBBBBBAR123456789123456789"), new DigitalSignature(new byte[10]), new HashMap<>());
         try {
@@ -52,15 +46,13 @@ class MedicalPrescriptionTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        assertEquals(medp.getLines().size(), 1);
+        assertEquals(1, medp.getLines().size());
     }
 
     // Quan ens passen una linia de prescripció invalida (amb elements null)
     @Test
     void addLine_invalidStringTest() throws IncorrectTakingGuidelinesException, NullArgumentException, WrongFormatException {
         ProductID prodID = new ProductID("12345678923473");
-        MedicalPrescriptionLine mpl = new MedicalPrescriptionLine(dayMoment.AFTERBREAKFAST, 2,
-                "Tomar cada dia", 1, 4, FqUnit.HOUR, prodID);
         MedicalPrescription medp = new MedicalPrescription(3, new Date(), new Date(),
                 new HealthCardID("BBBBBBBBAR123456789123456789"), new DigitalSignature(new byte[10]), new HashMap<>());
         try {
@@ -75,8 +67,6 @@ class MedicalPrescriptionTest {
     @Test
     void addLine_incompleteStringTest() throws WrongFormatException, NullArgumentException {
         ProductID prodID = new ProductID("12345678923473");
-        MedicalPrescriptionLine mpl = new MedicalPrescriptionLine(dayMoment.AFTERBREAKFAST, 2,
-                "Tomar cada dia", 1, 4, FqUnit.HOUR, prodID);
         MedicalPrescription medp = new MedicalPrescription(3, new Date(), new Date(),
                 new HealthCardID("BBBBBBBBAR123456789123456789"), new DigitalSignature(new byte[10]), new HashMap<>());
         try {
@@ -91,8 +81,6 @@ class MedicalPrescriptionTest {
     @Test
     void addLine_incorrectFormatTest() throws NullArgumentException, WrongFormatException {
         ProductID prodID = new ProductID("12345678923473");
-        MedicalPrescriptionLine mpl = new MedicalPrescriptionLine(dayMoment.AFTERBREAKFAST, 2,
-                "Tomar cada dia", 1, 4, FqUnit.HOUR, prodID);
         MedicalPrescription medp = new MedicalPrescription(3, new Date(), new Date(),
                 new HealthCardID("BBBBBBBBAR123456789123456789"), new DigitalSignature(new byte[10]), new HashMap<>());
         try {
@@ -103,12 +91,11 @@ class MedicalPrescriptionTest {
         }
     }
 
+    // **************************** TESTS DEL MÈTODE MODIFYLINE ****************************
+
     @Test
     void modifyLine_NullProdIDTest() throws NullArgumentException, WrongFormatException,
                                             IncorrectTakingGuidelinesException, ProductNotInPrescriptionException {
-        ProductID prodID = new ProductID("12345678923473");
-        MedicalPrescriptionLine mpl = new MedicalPrescriptionLine(dayMoment.AFTERBREAKFAST, 2,
-                "Tomar cada dia", 1, 4, FqUnit.HOUR, prodID);
         MedicalPrescription medp = new MedicalPrescription(3, new Date(), new Date(),
                 new HealthCardID("BBBBBBBBAR123456789123456789"), new DigitalSignature(new byte[10]), new HashMap<>());
         try {
@@ -133,10 +120,37 @@ class MedicalPrescriptionTest {
         }
     }
 
+    // **************************** TESTS DEL MÈTODE REMOVELINE ****************************
 
+    // Comprovem que el tamany de l'array decrementa quan fem remove
+    @Test
+    void checkRemovedLine() throws NullArgumentException, WrongFormatException {
+        ProductID prodID = new ProductID("12345678923473");
+        ProductID prodID2 = new ProductID("12345678923497");
+        MedicalPrescription medp = new MedicalPrescription(3, new Date(), new Date(),
+                new HealthCardID("BBBBBBBBAR123456789123456789"), new DigitalSignature(new byte[10]), new HashMap<>());
+        try {
+            medp.addLine(prodID, valid_line);
+            medp.addLine(prodID2, valid_line);
+            medp.removeLine(prodID);
+            medp.removeLine(prodID2);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        assertEquals(0, medp.getLines().size());
+    }
 
     @Test
-    void removeLineTest() {
+    void removeLine_ProdID_NotFoundTest() throws WrongFormatException, NullArgumentException {
+        ProductID prodID = new ProductID("12345678923473");
+        // Li passem un ProductID diferent del creat
+        MedicalPrescription medp = new MedicalPrescription(3, new Date(), new Date(),
+                new HealthCardID("BBBBBBBBAR123456789123456789"), new DigitalSignature(new byte[10]), new HashMap<>());
+        try {
+            medp.removeLine(prodID);
+            fail();
+        } catch (ProductNotInPrescriptionException ignored) {
 
+        }
     }
 }
