@@ -9,18 +9,22 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.fail;
 
 class TakingGuidelineTest {
+
     @Test
-    void NullArgumentTest() throws NullArgumentException {
-        dayMoment dm = null;
-        float du = Float.parseFloat(null);
-        String i = null;
-        float d = Float.parseFloat(null);
-        float f = Float.parseFloat(null);
-        FqUnit fqUnit = null;
+    void CorrectGuidelineTest() {
         try {
-            TakingGuideline tgl = new TakingGuideline(dm, du, i, d, f, fqUnit);
+            TakingGuideline tgl = new TakingGuideline(dayMoment.AFTERLUNCH, 0.5f, "Pastilla", 1.5f, 75.2f, FqUnit.DAY);
+        } catch (NullArgumentException ignored) {
             fail();
-        } catch (NullArgumentException e) {
+        }
+    }
+
+    @Test
+    void NullArgumentTest() {
+        try {
+            TakingGuideline tgl = new TakingGuideline(null, 0.5f, "Pastilla", 1.5f, 75.2f, FqUnit.DAY);
+            fail();
+        } catch (NullArgumentException ignored) {
 
         }
     }
