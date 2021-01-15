@@ -1,8 +1,6 @@
 package services;
 
-import data.*;
-
-import java.util.Queue;
+import data.HealthCardID;
 
 public interface ScheduledVisitAgenda {
 
