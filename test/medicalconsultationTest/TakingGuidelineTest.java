@@ -1,9 +1,7 @@
 package medicalconsultationTest;
 
-import exceptions.NullArgumentException;
-import medicalconsultation.FqUnit;
-import medicalconsultation.TakingGuideline;
-import medicalconsultation.dayMoment;
+import exceptions.*;
+import medicalconsultation.*;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.fail;

@@ -1,9 +1,8 @@
 package servicesTest;
 
-import data.HealthCardID;
-import exceptions.NullArgumentException;
-import exceptions.WrongFormatException;
-import services.ScheduledVisitAgenda;
+import data.*;
+import exceptions.*;
+import services.*;
 
 import java.util.LinkedList;
 import java.util.NoSuchElementException;

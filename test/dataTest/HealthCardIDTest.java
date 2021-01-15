@@ -1,7 +1,7 @@
 package dataTest;
+
 import data.HealthCardID;
-import exceptions.NullArgumentException;
-import exceptions.WrongFormatException;
+import exceptions.*;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

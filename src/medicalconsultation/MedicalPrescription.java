@@ -1,11 +1,7 @@
 package medicalconsultation;
 
-import data.DigitalSignature;
-import data.HealthCardID;
-import data.ProductID;
-import exceptions.IncorrectTakingGuidelinesException;
-import exceptions.NullArgumentException;
-import exceptions.ProductNotInPrescriptionException;
+import data.*;
+import exceptions.*;
 
 import java.util.Date;
 import java.util.HashMap;

@@ -1,10 +1,7 @@
-import data.DigitalSignature;
-import data.HealthCardID;
+import data.*;
 import exceptions.*;
-import medicalconsultation.MedicalPrescription;
-import medicalconsultation.ProductSpecification;
-import services.HealthNationalService;
-import services.ScheduledVisitAgenda;
+import medicalconsultation.*;
+import services.*;
 
 import java.net.ConnectException;
 import java.time.Instant;

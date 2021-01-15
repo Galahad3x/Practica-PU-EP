@@ -1,10 +1,11 @@
 import data.*;
 import exceptions.*;
 import medicalconsultation.*;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import servicesTest.HealthNationalServiceDB;
-import servicesTest.ScheduledVisitAgendaDB;
+
+import servicesTest.*;
 
 import java.math.BigDecimal;
 import java.net.ConnectException;

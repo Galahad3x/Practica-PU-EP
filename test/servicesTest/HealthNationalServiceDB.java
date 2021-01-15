@@ -1,10 +1,9 @@
 package servicesTest;
 
-import data.HealthCardID;
+import data.*;
 import exceptions.*;
-import medicalconsultation.MedicalPrescription;
-import medicalconsultation.ProductSpecification;
-import services.HealthNationalService;
+import medicalconsultation.*;
+import services.*;
 
 import java.net.ConnectException;
 import java.util.Date;
