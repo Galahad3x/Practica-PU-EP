@@ -9,4 +9,17 @@ Pràctica d'EP de Proves Unitàries
 
 · De la mateixa manera que s'ha comprovat al test de AddLine, en el test de RemoveLine comprovarem que un cop realitzada l'acció, l'array de instruccions ha decrementat a 0.
 
-· En la classe MedicalPrescription, s'ha optat per fer ús de metodes varis per tal de no repetir procediments al llarg del programa, evitant d'aquesta manera els code smells de tipus bloaters, doncs s'ha intentat mantenir un tamany reduit en cada mètode, buscant simplesa però precisió.
+· (PRINCIPI SOLID: S) En la classe MedicalPrescription s'ha optat per fer ús de metodes varis per tal de no repetir procediments al llarg del programa, evitant d'aquesta manera els code smells de tipus bloaters (classes o mètodes massa llargs). S'ha intentat mantenir un tamany reduit en cada mètode, buscant simplesa però precisi a més de definir una classe per cada responsabilitat.
+
+· (PRINCIPI SOLID: O) Els canvis han generat codi nou en comptes de la modificació de l'existent, com per exemple... FICAR ALGUN EXEMPLE ESPECÍFIC DE CANVIS
+
+· (PRINCIPI SOLID: I) S'ha fet ús de la interficie HealthNationalService per tal de cambiar les dependencies de clases a dependencies de interficies.
+
+
+"""A REVISAR"""
+
+· La classe MedicalPrescription és un exemple de classe assignada amb el patró creador, doncs s'encarrega de crear diverses instàncies d'altres classes (com HealthCardID o DigitalSignature)
+
+· DayMoment i FqUnit són exemples de classes assignades amb el patró d'acoblament baix, doncs la dependència amb altres classes és mínima (o en aquest cas inexistent).
+
+
