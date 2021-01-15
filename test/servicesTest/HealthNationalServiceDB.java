@@ -33,7 +33,7 @@ public class HealthNationalServiceDB implements HealthNationalService {
             }
         }
         // Si no es HealthCardID
-        if (hcID.getClass() != HealthCardID.class) {
+        if (!HealthCardID.hasCorrectFormat(hcID.personalID)) {
             throw new HealthCardException();
         }
         // Si una HealthCardID no té associada una eRecepta
