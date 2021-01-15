@@ -15,7 +15,6 @@ public class MedicalPrescriptionLine {
     public void setGuideline(TakingGuideline guideline) {
         this.guideline = guideline;
     }
-
     public TakingGuideline getGuideline() {
         return guideline;
     }

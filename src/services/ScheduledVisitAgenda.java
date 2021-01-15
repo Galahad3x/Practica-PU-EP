@@ -1,10 +1,14 @@
 package services;
 
 import data.HealthCardID;
+import exceptions.NullArgumentException;
+import exceptions.WrongFormatException;
+
+import java.util.NoSuchElementException;
 
 public interface ScheduledVisitAgenda {
 
-    public void addVisit(String personalID);
+    void addVisit(String personalID) throws WrongFormatException, NullArgumentException;
 
-    public HealthCardID getHealthCardID();
+    HealthCardID getHealthCardID() throws NoSuchElementException;
 }

@@ -1,7 +1,6 @@
 package medicalconsultationTest;
 
 import exceptions.NullArgumentException;
-import medicalconsultation.FqUnit;
 import medicalconsultation.Posology;
 import org.junit.jupiter.api.Test;
 

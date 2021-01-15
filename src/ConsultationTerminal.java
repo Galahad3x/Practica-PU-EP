@@ -70,6 +70,9 @@ public class ConsultationTerminal {
         if (instruc == null){
             throw new NullArgumentException();
         }
+        if (mp == null){
+            throw new NullPointerException();
+        }
         mp.addLine(selectedProduct.getProdID(),instruc);
     }
 
@@ -82,6 +85,10 @@ public class ConsultationTerminal {
     }
 
     public void sendePrescription() throws ConnectException, NotValidePrescriptionException, eSignatureException, NotCompletedMedicalPrescriptionException {
+        if(this.eSignature == null){
+            throw new eSignatureException();
+        }
+        mp.seteSign(this.eSignature);
         hns.sendePrescription(mp);
     }
 
@@ -109,5 +116,9 @@ public class ConsultationTerminal {
             throw new NullArgumentException();
         }
         this.eSignature = ds;
+    }
+
+    public MedicalPrescription getMp() {
+        return mp;
     }
 }
