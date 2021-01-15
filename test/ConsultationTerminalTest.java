@@ -1,9 +1,6 @@
-import data.DigitalSignature;
-import data.HealthCardID;
-import data.ProductID;
+import data.*;
 import exceptions.*;
-import medicalconsultation.MedicalPrescription;
-import medicalconsultation.ProductSpecification;
+import medicalconsultation.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import servicesTest.HealthNationalServiceDB;
@@ -19,12 +16,13 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 public class ConsultationTerminalTest {
 
-    private static String[] valid_hcIDs = {"BBBBBBBBQF123456789012345678", "BBBBBBBBQD123456789012345678"};
-    private static String[] valid_prIDs = {"12345678901234", "12345678901235", "12345678901236", "12345678901237", "12345678901238", "12345678901239"};
-    private static String[] valid_keywords = {"medicament", "pastilles", "crema", "cap", "panxa", "estomac", "dolor", "pell"};
+    private static final String[] valid_hcIDs = {"BBBBBBBBQF123456789012345678", "BBBBBBBBQD123456789012345678"};
+    // private static final String[] valid_prIDs = {"12345678901234", "12345678901235", "12345678901236", "12345678901237", "12345678901238", "12345678901239"};
+    private static final String[] valid_keywords = {"medicament", "pastilles", "crema", "cap", "panxa", "estomac", "dolor", "pell"};
+    private static final String[] valid_line = {"AFTERBREAKFAST","2","Tomar cada dia","1","4","HOUR"};
 
-    private static HealthNationalServiceDB hnsDB = new HealthNationalServiceDB();
-    private static ScheduledVisitAgendaDB agendaDB = new ScheduledVisitAgendaDB();
+    private static final HealthNationalServiceDB hnsDB = new HealthNationalServiceDB();
+    private static final ScheduledVisitAgendaDB agendaDB = new ScheduledVisitAgendaDB();
 
     private static ConsultationTerminal terminal = new ConsultationTerminal();
 
@@ -107,6 +105,8 @@ public class ConsultationTerminalTest {
     // initRevisionEdition();
     void try_initRevision() {
         try {
+            //Reiniciar Date per evitar CC
+            terminal.getMp().setEndDate(new Date());
             terminal.initPrescriptionEdition();
         } catch (AnyCurrentPrescriptionException e) {
             e.printStackTrace();
@@ -221,7 +221,7 @@ public class ConsultationTerminalTest {
         try_init();
         try_initRevision();
         try_search(valid_keywords[0]);
-        try_select(0);
+        try_select(1);
         try {
             try_enterGuidelines(new String[10]);
         } catch (AnySelectedMedicineException | NullArgumentException e) {
@@ -310,12 +310,11 @@ public class ConsultationTerminalTest {
     @Test
     void CU_Correcte() throws ConnectException {
         try_init();
-        terminal.getMp().setEndDate(new Date());
         try_initRevision();
         try_search(valid_keywords[0]);
         try_select(0);
         try {
-            try_enterGuidelines(new String[10]);
+            try_enterGuidelines(valid_line);
         } catch (AnySelectedMedicineException | NullArgumentException e) {
             fail();
         }
