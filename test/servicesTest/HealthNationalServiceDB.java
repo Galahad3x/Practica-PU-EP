@@ -81,7 +81,6 @@ public class HealthNationalServiceDB implements HealthNationalService {
     public void add_prescription(MedicalPrescription pres) {
         prescriptions.add(pres);
     }
-
     public void add_product(ProductSpecification prod) {
         products.add(prod);
     }
