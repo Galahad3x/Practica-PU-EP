@@ -29,36 +29,47 @@ public class MedicalPrescription {
     public int getPrescCode() {
         return this.prescCode;
     }
+
     public void setPrescCode(int prescCode) {
         this.prescCode = prescCode;
     }
+
     public Date getPrescDate() {
         return prescDate;
     }
+
     public void setPrescDate(Date endDate) {
         this.endDate = endDate;
     }
+
     public Date getEndDate() {
         return this.endDate;
     }
+
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
+
     public DigitalSignature geteSign() {
         return this.eSign;
     }
+
     public void seteSign(DigitalSignature eSign) {
         this.eSign = eSign;
     }
+
     public HashMap<ProductID, MedicalPrescriptionLine> getLines() {
         return this.lines;
     }
+
     public void setLines(HashMap<ProductID, MedicalPrescriptionLine> lines) {
         this.lines = lines;
     }
+
     public HealthCardID getHcID() {
         return hcID;
     }
+
     public void setHcID(HealthCardID hcID) {
         this.hcID = hcID;
     }
@@ -74,11 +85,11 @@ public class MedicalPrescription {
         checkNullElements(instruc);
         checkInstrucArguments(instruc);
         MedicalPrescriptionLine mpl = new MedicalPrescriptionLine(dayMoment.valueOf(instruc[0]), Float.parseFloat(instruc[1]), instruc[2],
-                                Float.parseFloat(instruc[3]), Float.parseFloat(instruc[4]), FqUnit.valueOf(instruc[5]), prodID);
+                Float.parseFloat(instruc[3]), Float.parseFloat(instruc[4]), FqUnit.valueOf(instruc[5]), prodID);
         lines.put(prodID, mpl);
     }
 
-    public void modifyLine(ProductID prodID, String[] instruc) throws IncorrectTakingGuidelinesException, ProductNotInPrescriptionException, NullArgumentException{
+    public void modifyLine(ProductID prodID, String[] instruc) throws IncorrectTakingGuidelinesException, ProductNotInPrescriptionException, NullArgumentException {
         parseProdID(prodID);
         //Mirem si String[] està incomplet
         checkStringLength(instruc);

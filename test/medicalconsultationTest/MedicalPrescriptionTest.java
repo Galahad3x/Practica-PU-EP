@@ -7,12 +7,14 @@ import exceptions.IncorrectTakingGuidelinesException;
 import exceptions.NullArgumentException;
 import exceptions.ProductNotInPrescriptionException;
 import exceptions.WrongFormatException;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 import medicalconsultation.MedicalPrescription;
+import org.junit.jupiter.api.Test;
 
 import java.util.Date;
 import java.util.HashMap;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 class MedicalPrescriptionTest {
 
@@ -110,7 +112,7 @@ class MedicalPrescriptionTest {
 
     @Test
     void modifyLine_NullProdIDTest() throws NullArgumentException, WrongFormatException,
-                                            IncorrectTakingGuidelinesException, ProductNotInPrescriptionException {
+            IncorrectTakingGuidelinesException, ProductNotInPrescriptionException {
         MedicalPrescription medp = new MedicalPrescription(3, new Date(), new Date(),
                 new HealthCardID("BBBBBBBBAR123456789123456789"), new DigitalSignature(new byte[10]), new HashMap<>());
         try {

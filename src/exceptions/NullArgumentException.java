@@ -1,7 +1,7 @@
 package exceptions;
 
 public class NullArgumentException extends Exception {
-    public NullArgumentException(){
+    public NullArgumentException() {
         super();
     }
 }

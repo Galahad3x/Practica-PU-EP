@@ -21,21 +21,21 @@ public class ProductSpecification {
     }
 
     public void setProdID(ProductID prodID) throws NullArgumentException {
-        if (prodID == null){
+        if (prodID == null) {
             throw new NullArgumentException();
         }
         this.prodID = prodID;
     }
 
     public void setDescription(String description) throws NullArgumentException {
-        if (description == null){
+        if (description == null) {
             throw new NullArgumentException();
         }
         this.description = description;
     }
 
     public void setPrice(BigDecimal price) throws NullArgumentException {
-        if (price == null){
+        if (price == null) {
             throw new NullArgumentException();
         }
         this.price = price;
