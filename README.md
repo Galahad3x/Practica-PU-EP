@@ -26,7 +26,23 @@ Per el que fa als tests de "medicalConsultation" s'ha realitzat el mateix proced
   
   + removeLine_ProdID_NotFoundTest(): cas en que el id introduit no estigui en la llista (i conseqüentment no es pugui eliminar la linia)
   
-==========================================
+==========================================  
+
+### Realització de ConsultationTerminalTest utilitzant dobles  
+Degut a que la classe ConsultationTerminal té dependències amb el HealthNationalService i amb la ScheduledVisitAgenda, s'han d'utilitar calsses dobles per a emular el comportament d'aquestes classes externes al realitzar les proves unitàries de ConsultationTerminal. D'aquesta manera, abans de cada test amb el mètode BeforeEach inserim registres a aquests dobles per a que puguin emular el comportament correctament.  
+Els tests de ConsultationTerminal consisteixen en emular el cas d'us Supervisar Tratamiento, comprovant que realitzat correctament no hi ha problemes, i que realitzat de forma incorrecta s'indica l'error corresponent.  
+Les funcions de ConsultationTerminal s'han d'executar en el següent ordre i amb paràmetres correctes per a evitar errors i simular el CU correctament:
+ + initRevision();
+ + initPrescriptionEdition();
+ + searchForProducts(keyword);
+ + selectProduct(option);
+ + enterMedicineGuidelines(instruc);
+ + enterTreatmentEndingDate(date);
+ + sendePrescription();   
+
+Aquest cas el comprovem a la funció de test CU_Correcte(). La resta de tests comproven sub-rutines d'aquestes funcions, executades correctament o incorrectament tal com indiqui el nom de la funció. Depèn de si el programa ha de fallar o no, capturem les excepcions i el test falla o no.  
+
+## Teoria
 
 · A la classe MedicalPrescription s'ha decidit NO contemplar el cas d'afegir un medicament ja existent, es a dir, comprovar que un medicament es trobi repetit, ja que es considera que no té sentit que s'introdueixi el mateix producte més d'un cop, i encara menys un producte amb mateix ProductID però diferent descripció i/o preu.
 
