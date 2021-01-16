@@ -24,7 +24,7 @@ Per el que fa als tests de "medicalConsultation" s'ha realitzat el mateix proced
   + checkRemovedLine(): cas en que ens passen una línia vàlida per a eliminar (és a dir, comprovem que el tamany de la llista decrementa un cop fem removeLine)
   
   + removeLine_ProdID_NotFoundTest(): cas en que el id introduit no estigui en la llista (i conseqüentment no es pugui eliminar la linia)
-  ==========================================
+==========================================
 
 · A la classe MedicalPrescription s'ha decidit NO contemplar el cas d'afegir un medicament ja existent, es a dir, comprovar que un medicament es trobi repetit, ja que es considera que no té sentit que s'introdueixi el mateix producte més d'un cop, i encara menys un producte amb mateix ProductID però diferent descripció i/o preu.
 
