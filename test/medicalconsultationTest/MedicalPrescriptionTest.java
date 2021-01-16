@@ -19,6 +19,7 @@ class MedicalPrescriptionTest {
     private static final String[] valid_line = {"AFTERBREAKFAST", "2", "Tomar cada dia", "1", "4", "HOUR"};
     private static final String[] invalid_line = {"AFTERBREAKFAST", null, "Tomar cada dia", null, "4", "HOUR"};
     private static final String[] incomplete_line = {"AFTERBREAKFAST", "2", "Tomar cada dia", "1", "4"};
+    private static final String[] exceeded_line = {"AFTERBREAKFAST", "2", "Tomar cada dia", "1", "4", "HOUR", "extra"};
     private static final String[] incorrectFormat_line = {"bondia", "hola", "Tomar cada dia", "1.2", "4", "quetal"};
 
     // **************************** TESTS DEL MÈTODE ADDLINE ****************************
@@ -71,6 +72,20 @@ class MedicalPrescriptionTest {
                 new HealthCardID("BBBBBBBBAR123456789123456789"), new DigitalSignature(new byte[10]), new HashMap<>());
         try {
             medp.addLine(prodID, incomplete_line);
+            fail();
+        } catch (IncorrectTakingGuidelinesException ignored) {
+
+        }
+    }
+
+    // Quan ens passen una linia de prescripció amb massa elements (amb més de 6 paràmetres)
+    @Test
+    void addLine_exceededStringTest() throws WrongFormatException, NullArgumentException {
+        ProductID prodID = new ProductID("12345678923473");
+        MedicalPrescription medp = new MedicalPrescription(3, new Date(), new Date(),
+                new HealthCardID("BBBBBBBBAR123456789123456789"), new DigitalSignature(new byte[10]), new HashMap<>());
+        try {
+            medp.addLine(prodID, exceeded_line);
             fail();
         } catch (IncorrectTakingGuidelinesException ignored) {
 
