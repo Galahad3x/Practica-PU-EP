@@ -27,7 +27,7 @@ public class ConsultationTerminal {
         //Descarregar la eRecepta per mitjà dl HNS
         setMedicalPrescription(hns.getePrescription(patientID));
 
-        if(mp == null){
+        if (mp == null) {
             throw new NotValidePrescriptionException();
         }
 
@@ -36,14 +36,14 @@ public class ConsultationTerminal {
     }
 
     public void initPrescriptionEdition() throws AnyCurrentPrescriptionException, NotFinishedTreatmentException {
-        if(mp == null){
+        if (mp == null) {
             throw new AnyCurrentPrescriptionException();
         }
 
         Date currentEndingDate = mp.getEndDate();
         Date currentDate = Date.from(Instant.ofEpochSecond(System.currentTimeMillis()));
 
-        if(currentDate.before(currentEndingDate)){
+        if (currentDate.before(currentEndingDate)) {
             throw new NotFinishedTreatmentException();
         }
 
@@ -54,7 +54,7 @@ public class ConsultationTerminal {
     }
 
     public void selectProduct(int option) throws AnyMedicineSearchException, ConnectException {
-        if(searchResults == null || searchResults.size() == 0 || option > searchResults.size()){
+        if (searchResults == null || searchResults.size() == 0 || option > searchResults.size()) {
             throw new AnyMedicineSearchException();
         }
         selectedProduct = searchResults.get(option);
@@ -64,18 +64,18 @@ public class ConsultationTerminal {
         if (selectedProduct == null) {
             throw new AnySelectedMedicineException();
         }
-        if (instruc == null){
+        if (instruc == null) {
             throw new NullArgumentException();
         }
-        if (mp == null){
+        if (mp == null) {
             throw new NullPointerException();
         }
-        mp.addLine(selectedProduct.getProdID(),instruc);
+        mp.addLine(selectedProduct.getProdID(), instruc);
     }
 
     public void enterTreatmentEndingDate(Date date) throws IncorrectEndingDateException {
         Date currentDate = Date.from(Instant.ofEpochSecond(System.currentTimeMillis()));
-        if(date.before(currentDate)){
+        if (date.before(currentDate)) {
             throw new IncorrectEndingDateException();
         }
         mp.setPrescDate(currentDate);
@@ -83,7 +83,7 @@ public class ConsultationTerminal {
     }
 
     public void sendePrescription() throws ConnectException, NotValidePrescriptionException, eSignatureException, NotCompletedMedicalPrescriptionException {
-        if(this.eSignature == null){
+        if (this.eSignature == null) {
             throw new eSignatureException();
         }
         mp.seteSign(this.eSignature);
@@ -94,23 +94,23 @@ public class ConsultationTerminal {
         //Nothing
     }
 
-    public void setHNS(HealthNationalService hns){
+    public void setHNS(HealthNationalService hns) {
         this.hns = hns;
     }
 
-    public void setAgenda(ScheduledVisitAgenda sva){
+    public void setAgenda(ScheduledVisitAgenda sva) {
         this.agenda = sva;
     }
 
     public void setMedicalPrescription(MedicalPrescription mp) throws NullArgumentException {
-        if(mp == null){
+        if (mp == null) {
             throw new NullArgumentException();
         }
         this.mp = mp;
     }
 
     public void seteSignature(DigitalSignature ds) throws NullArgumentException {
-        if(ds == null){
+        if (ds == null) {
             throw new NullArgumentException();
         }
         this.eSignature = ds;

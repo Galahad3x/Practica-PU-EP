@@ -1,7 +1,7 @@
 package exceptions;
 
-public class WrongFormatException extends Exception{
-    public WrongFormatException(){
+public class WrongFormatException extends Exception {
+    public WrongFormatException() {
         super();
     }
 }

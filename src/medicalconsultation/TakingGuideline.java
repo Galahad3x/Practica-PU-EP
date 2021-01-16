@@ -11,7 +11,7 @@ public class TakingGuideline {
 
     public TakingGuideline(dayMoment dM, float du, String i, float d, float f, FqUnit u) throws NullArgumentException {
         this.posology = new Posology(d, f, u);
-        if ( dM == null || i == null ){
+        if (dM == null || i == null) {
             throw new NullArgumentException();
         }
         this.dMoment = dM;
@@ -20,35 +20,35 @@ public class TakingGuideline {
     }
 
     // Getters and Setters
-    public dayMoment getdMoment(){
+    public dayMoment getdMoment() {
         return dMoment;
     }
 
-    public void setdMoment(dayMoment dMoment){
+    public void setdMoment(dayMoment dMoment) {
         this.dMoment = dMoment;
     }
 
-    public float getDuration(){
+    public float getDuration() {
         return duration;
     }
 
-    public void setDuration(float duration){
+    public void setDuration(float duration) {
         this.duration = duration;
     }
 
-    public String getInstructions(){
+    public String getInstructions() {
         return instructions;
     }
 
-    public void setInstructions(String instructions){
+    public void setInstructions(String instructions) {
         this.instructions = instructions;
     }
 
-    public Posology getPosology(){
+    public Posology getPosology() {
         return posology;
     }
 
-    public void setPosology(Posology posology){
+    public void setPosology(Posology posology) {
         this.posology = posology;
     }
 }

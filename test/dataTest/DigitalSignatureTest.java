@@ -13,7 +13,7 @@ public class DigitalSignatureTest {
         try {
             DigitalSignature dig = new DigitalSignature(arr);
             fail();
-        } catch (NullArgumentException e) {
+        } catch (NullArgumentException ignored) {
 
         }
     }

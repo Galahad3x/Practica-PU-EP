@@ -40,12 +40,12 @@ public class HealthNationalServiceDB implements HealthNationalService {
     @Override
     public List<ProductSpecification> getProductsByKW(String keyword) throws AnyKeyWordMedicineException, ConnectException {
         List<ProductSpecification> resultats = new LinkedList<>();
-        for(ProductSpecification prod : this.products){
-            if(prod.getDescription().contains(keyword)){
+        for (ProductSpecification prod : this.products) {
+            if (prod.getDescription().contains(keyword)) {
                 resultats.add(prod);
             }
         }
-        if(resultats.size() == 0){
+        if (resultats.size() == 0) {
             throw new AnyKeyWordMedicineException();
         }
         search_results = resultats;
@@ -65,24 +65,24 @@ public class HealthNationalServiceDB implements HealthNationalService {
     }
 
     @Override
-    public MedicalPrescription sendePrescription(MedicalPrescription ePresc) throws ConnectException, NotValidePrescriptionException, eSignatureException, NotCompletedMedicalPrescriptionException {
+    public MedicalPrescription sendePrescription(MedicalPrescription ePresc) throws ConnectException, NotValidePrescriptionException, NotCompletedMedicalPrescriptionException {
         Random rand = new Random();
         int generated_code = rand.nextInt(1000);
         ePresc.setPrescCode(generated_code);
-        if(ePresc.getPrescDate().after(new Date()) || ePresc.getEndDate().before(new Date())){
+        if (ePresc.getPrescDate().after(new Date()) || ePresc.getEndDate().before(new Date())) {
             throw new NotValidePrescriptionException();
         }
-        if(ePresc.getLines().size() == 0){
+        if (ePresc.getLines().size() == 0) {
             throw new NotCompletedMedicalPrescriptionException();
         }
         return ePresc;
     }
 
-    public void add_prescription(MedicalPrescription pres){
+    public void add_prescription(MedicalPrescription pres) {
         prescriptions.add(pres);
     }
 
-    public void add_product(ProductSpecification prod){
+    public void add_product(ProductSpecification prod) {
         products.add(prod);
     }
 }

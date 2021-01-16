@@ -13,7 +13,7 @@ final public class DigitalSignature {
     private final byte[] signature;
 
     public DigitalSignature(byte[] signature) throws NullArgumentException {
-        if (signature == null){
+        if (signature == null) {
             throw new NullArgumentException();
         }
         this.signature = signature;
@@ -27,7 +27,7 @@ final public class DigitalSignature {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        DigitalSignature hcardID= (DigitalSignature) o;
+        DigitalSignature hcardID = (DigitalSignature) o;
         return Arrays.equals(signature, hcardID.signature);
     }
 
@@ -38,6 +38,6 @@ final public class DigitalSignature {
 
     @Override
     public String toString() {
-        return "DigitalSignature{" + "signature='" + Arrays.toString(signature) + '\'' +'}';
+        return "DigitalSignature{" + "signature='" + Arrays.toString(signature) + '\'' + '}';
     }
 }

@@ -17,7 +17,7 @@ public class ProductSpecificationTest {
             String description = "Medicina per al mal de cap";
             BigDecimal price = BigDecimal.valueOf(3.99);
             ProductSpecification prodS = new ProductSpecification(prodID, description, price);
-        } catch (Exception e){
+        } catch (Exception e) {
             fail();
         }
     }
@@ -30,7 +30,7 @@ public class ProductSpecificationTest {
             BigDecimal price = BigDecimal.valueOf(3.99);
             ProductSpecification prodS = new ProductSpecification(prodID, description, price);
             fail();
-        } catch (Exception e){
+        } catch (Exception e) {
             // Do nothing
         }
     }
@@ -45,7 +45,7 @@ public class ProductSpecificationTest {
             prodS.setProdID(prodID);
             prodS.setDescription("Medicament");
             prodS.setPrice(BigDecimal.valueOf(5.99));
-        } catch (Exception e){
+        } catch (Exception e) {
             fail();
         }
     }

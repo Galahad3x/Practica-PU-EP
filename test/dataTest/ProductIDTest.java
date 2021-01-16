@@ -9,12 +9,12 @@ import static org.junit.jupiter.api.Assertions.fail;
 public class ProductIDTest {
 
     @Test
-    void NullArgumentTest() throws Exception{
+    void NullArgumentTest() throws Exception {
         String code = null;
-        try{
+        try {
             ProductID prod = new ProductID(code);
             fail();
-        }catch (NullArgumentException e){
+        } catch (NullArgumentException ignored) {
 
         }
     }
@@ -22,10 +22,10 @@ public class ProductIDTest {
     @Test
     void WrongFormatTest() throws Exception {
         String code = "1ADH282";
-        try{
+        try {
             ProductID prod = new ProductID(code);
             fail();
-        }catch (WrongFormatException e){
+        } catch (WrongFormatException ignored) {
 
         }
     }
@@ -33,9 +33,9 @@ public class ProductIDTest {
     @Test
     void CorrectFormatTest() throws Exception {
         String code = "12345678923473";
-        try{
+        try {
             ProductID prod = new ProductID(code);
-        }catch (WrongFormatException e){
+        } catch (WrongFormatException e) {
             fail();
         }
     }

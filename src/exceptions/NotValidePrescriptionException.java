@@ -1,7 +1,7 @@
 package exceptions;
 
-public class NotValidePrescriptionException extends Exception{
-    public NotValidePrescriptionException(){
+public class NotValidePrescriptionException extends Exception {
+    public NotValidePrescriptionException() {
         super();
     }
 }

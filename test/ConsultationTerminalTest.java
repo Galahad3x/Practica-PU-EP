@@ -20,7 +20,7 @@ public class ConsultationTerminalTest {
     private static final String[] valid_hcIDs = {"BBBBBBBBQF123456789012345678", "BBBBBBBBQD123456789012345678"};
     // private static final String[] valid_prIDs = {"12345678901234", "12345678901235", "12345678901236", "12345678901237", "12345678901238", "12345678901239"};
     private static final String[] valid_keywords = {"medicament", "pastilles", "crema", "cap", "panxa", "estomac", "dolor", "pell"};
-    private static final String[] valid_line = {"AFTERBREAKFAST","2","Tomar cada dia","1","4","HOUR"};
+    private static final String[] valid_line = {"AFTERBREAKFAST", "2", "Tomar cada dia", "1", "4", "HOUR"};
 
     private static final HealthNationalServiceDB hnsDB = new HealthNationalServiceDB();
     private static final ScheduledVisitAgendaDB agendaDB = new ScheduledVisitAgendaDB();

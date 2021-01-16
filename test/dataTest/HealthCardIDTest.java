@@ -3,6 +3,7 @@ package dataTest;
 import data.HealthCardID;
 import exceptions.*;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class HealthCardIDTest {
@@ -12,24 +13,24 @@ public class HealthCardIDTest {
         try {
             HealthCardID hct = new HealthCardID(personalIDTest);
             fail();
-        } catch (NullArgumentException e) {
+        } catch (NullArgumentException ignored) {
 
         }
     }
 
     @Test
-    void WrongFormatTest() throws Exception{
+    void WrongFormatTest() throws Exception {
         String personalIDTest = "BBAR1234567891";
         try {
             HealthCardID hct = new HealthCardID(personalIDTest);
             fail();
-        } catch (WrongFormatException e) {
+        } catch (WrongFormatException ignored) {
 
         }
     }
 
     @Test
-    void CorrectFormatTest() throws Exception{
+    void CorrectFormatTest() throws Exception {
         String personalIDTest = "BBBBBBBBAR123456789123456789";
         try {
             HealthCardID hct = new HealthCardID(personalIDTest);
